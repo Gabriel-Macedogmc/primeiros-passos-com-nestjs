@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    restart: on-failure
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_NAME=${POSTGRES_NAME}
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./.docker:/var/lib/postgresql/data
+    networks:
+      - api
+  app:
+    image: node:latest
+    container_name: nesstjs-api
+    restart: on-failure
+    command: yarn start:dev
+    working_dir: /app
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=docker-dev
+    volumes:
+      - './:/app'
+    networks:
+      - api
+    links:
+      - db
+    depends_on:
+      - db
+
+networks:
+  api:
+    driver: bridge
