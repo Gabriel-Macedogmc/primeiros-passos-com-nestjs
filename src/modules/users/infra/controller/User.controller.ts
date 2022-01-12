@@ -25,6 +25,13 @@ export class UserController {
     private readonly getUser: GetUserService,
   ) {}
 
+  @Get('/')
+  async getRoute() {
+    return {
+      message: 'Primeiro Deploy na Heroku com Nestjs e CI',
+    };
+  }
+
   @Post('/')
   @HttpCode(201)
   async create(
