@@ -46,11 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Login Heroku
-        env:
-          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-        run: heroku login
       - name: Access Bash App
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-        run: heroku run bash -a ${{secrets.HEROKU_APP_NAME}}
+        run: heroku run bash -a ${{secrets.HEROKU_APP_NAME}} -- myscript.sh
