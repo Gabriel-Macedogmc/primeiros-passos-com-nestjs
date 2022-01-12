@@ -8,6 +8,7 @@ module.exports = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_NAME,
   entities: [`./dist/modules/**/infra/typeorm/models/*{.ts,.js}`],
+  migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
   cli: {
     migrationsDir: `./src/shared/infra/typeorm/migrations`,
   },
