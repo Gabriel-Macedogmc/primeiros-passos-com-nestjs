@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -10,7 +11,9 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(3000);
+  await app.listen(process.env.APP_PORT, () =>
+    console.log(`Server Running on port ${process.env.APP_PORT}`),
+  );
 }
 
 bootstrap();

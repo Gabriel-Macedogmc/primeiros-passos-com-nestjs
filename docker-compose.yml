@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 services:
   db:
@@ -16,17 +16,11 @@ services:
     networks:
       - api
   app:
-    image: node:latest
+    build: .
     container_name: nesstjs-api
     restart: on-failure
-    command: yarn start:dev
-    working_dir: /app
-    ports:
-      - '3000:3000'
-    environment:
-      - NODE_ENV=docker-dev
     volumes:
-      - './:/app'
+      - .:/usr/app
     networks:
       - api
     links:

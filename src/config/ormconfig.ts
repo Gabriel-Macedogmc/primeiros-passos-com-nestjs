@@ -1,5 +1,4 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-console.log(__dirname);
 
 export default () =>
   ({
